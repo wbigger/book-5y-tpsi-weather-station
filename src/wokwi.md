@@ -8,4 +8,4 @@ Creiamo una stazione di monitoraggio ambientale virtuale con Wokwi ed MQTT:
 - cambiare `MQTT_TOPIC` in `marconi-stazione-2024`
 - premere il tasto Play e la nostra stazione è pronta!
 
-Per testare che sta andando tutto bene, andare su `https://www.hivemq.com/demos/websocket-client/`, connettersi allo stesso broker di wokwi e sottoscriversi allo stesso canale.
+Per testare che sta andando tutto bene, andare su [https://www.hivemq.com/demos/websocket-client/](https://www.hivemq.com/demos/websocket-client/), connettersi allo stesso broker di wokwi e sottoscriversi allo stesso canale.

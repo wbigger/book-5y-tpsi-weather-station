@@ -6,7 +6,7 @@ Lanciare una macchina EC2 come segue:
 
 - Ubuntu Server
 - t2.micro
-- aprire la porta 1880 e per utilità anche All ICMP
+- aprire le porta 1880, 80 e per utilità anche All ICMP, come sorgente usate Any
 - come chiave sempre `vockey.pem`
 
 Installare Node-RED come segue (attenzione, rispetto alla guida siamo passati alla versione 21):
@@ -27,7 +27,7 @@ npm install node-red-node-mongodb
 Infine avviare Node-RED:
 
 ```sh
-npm install node-red-node-mongodb
+node-red
 ```
 
 Adesso è possibile accedere alla propria istanza con andando su `http://<your-instance-ip>:1880/`.
