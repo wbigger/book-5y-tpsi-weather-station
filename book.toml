@@ -1,0 +1,13 @@
+[book]
+authors = ["Claudio Capobianco"]
+language = "it"
+multilingual = false
+src = "src"
+title = "TPSI - Quinto Anno - Stazione monitoraggio ambientale"
+
+[build]
+create-missing = false
+
+[output.html]
+additional-css = ["custom.css"]
+git-repository-url = "https://github.com/wbigger/book-5y-tpsi-weather-station.git"
