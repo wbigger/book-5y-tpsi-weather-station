@@ -1,6 +1,6 @@
 # Wokwi
 
-Creiamo adesso una stazione di monitoraggio ambientale virtuale con Wokwi ed MQTT:
+Creiamo una stazione di monitoraggio ambientale virtuale con Wokwi ed MQTT:
 
 - accedere a [wokwi.com](https://wokwi.com)
 - fare la copia di [questo](https://wokwi.com/projects/322577683855704658) progetto
