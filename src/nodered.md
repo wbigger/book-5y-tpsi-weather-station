@@ -6,7 +6,7 @@ Lanciare una macchina EC2 come segue:
 
 - Ubuntu Server
 - t2.micro
-- aprire le porta 1880, 80 e per utilità anche All ICMP, come sorgente usate Any
+- aprire le porte 1880, 80 e per utilità anche "All ICMP", come sorgente usate "Any"
 - come chiave sempre `vockey.pem`
 
 Installare Node-RED come segue (attenzione, rispetto alla guida siamo passati alla versione 21):
@@ -17,10 +17,10 @@ sudo apt-get install -y nodejs build-essential
 sudo npm install -g --unsafe-perm node-red
 ```
 
-Installare inoltre i nodi che ci serviranno per MongoDB:
+Installare anche i nodi che ci serviranno per MongoDB:
 
 ```sh
-cd .node-red/
+cd ~/.node-red/
 npm install node-red-node-mongodb
 ```
 
