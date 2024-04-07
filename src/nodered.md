@@ -31,3 +31,35 @@ node-red
 ```
 
 Adesso è possibile accedere alla propria istanza con andando su `http://<your-instance-ip>:1880/`.
+
+## Flow MQTT
+
+Cominciamo a configurare il nostro "flow" di Node-RED.
+
+Cerchiamo nella casella di ricerca in alto a sinistra "MQTT" e trasciniamo nella pagina il nodo "MQTT in".
+
+![screenshot-0](./img/screenshot-0.png)
+
+Il nodo appena messo ha un triangolo arancione, vuol dire che per funzionare deve essere configurato. Clicchiamoci sopra per farlo.
+
+![screenshot-1](./img/screenshot-1.png)
+
+Cliccare sulla matita vicino ad "Add new mqtt-broker". Come Name mettere `HiveMQ` e come server mettere `broker.mqttdashboard.com`.
+
+![screenshot-2](./img/screenshot-2.png)
+
+Premere add, quindi nella schermata successiva mettere il nostro topic di interesse, sempre `marconi-stazione-2024`.
+
+![screenshot-3](./img/screenshot-3.png)
+
+Premere "Done" A questo punto il nodo è configurato. Ora aggiungiamo anche un nodo di Debug per vedere se effetivamente sta ricevendo i messaggi.
+
+![screenshot-4](./img/screenshot-4.png)
+
+Il nostro flow è finito, ma come vedete dai pallini azzurri sopra i nodi, non è ancora attivo. Per renderlo attivo bisogna fare il "Deploy" (traducibile con "dislocazione" in italiano) cliccando sul tasto in alto a destra. Ora il flow è in esecuzione!
+
+![screenshot-4](./img/screenshot-4.png)
+
+Cliccando nel pannello a destra sul ragno si apre la schermata con le stampe di debug. Ora dalla stazione simulata su wokwi cambiare la temperatura e controllare che il nuovo messaggio arrivi su Node-RED.
+
+![screenshot-5](./img/screenshot-5.png)
