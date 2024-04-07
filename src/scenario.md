@@ -23,12 +23,18 @@ Per quanto riguarda la stazione di monitoraggio, ipotizziamo l'uso di una scheda
 ## Architettura di rete
 
 - WebServer
-- Application Server (NodeRED)
+- Application Server (Node-RED)
 - DB SQL (MySQL)
-- DB NoSQL (MongoDB)
+- DB NoSQL (MongoDB) 
 
+La scuola ha già a disposizione un web server, un server Node-RED ed un DBMS con MySql, quindi si decide di usare l'infrastuttura già esistente per ridurre i costi.
 
+Per il DB NoSQL invece, non ancora presente a scuola, si decide per il momento di usare un servizio in cloud, in modo da poter testare a basso costo o gratuitamente il servizio per poi valutare se importarlo all'interno dei server della scuola.
 
-- 
+![Architettura](./img/arch.drawio.png)
 
+## Note sul tutorial
 
+In questo tutorial, per comodità useremo tutti servizi in cloud anche per quelli on-premises.
+
+In particolare, come application server useremo Node-RED su una macchina AWS-EC2 con Ubuntu. In ogni caso è facilmente replicabile on-premises seguendo le stesse istruzioni ma con una macchina Ubuntu locale.
