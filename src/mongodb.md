@@ -29,7 +29,7 @@ Nella pagina seguente, copiare _solo_ la parte dell'hostname, come in figura.
 
 ![screenshot-11](./img/screenshot-11.png)
 
-Tornare su Nodered, aggiungere il nodo "MondoDB-in", quindi cliccarci sopra per configurarlo e cliccare sulla matita per configurare il server. Impostare come segue:
+Tornare su Nodered, aggiungere il nodo "mongodb out", quindi cliccarci sopra per configurarlo e cliccare sulla matita per configurare il server. Impostare come segue:
 
 - Host: incollare l'hostname copiato
 - Database: "stazione"
