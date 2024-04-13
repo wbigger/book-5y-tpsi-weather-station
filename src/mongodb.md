@@ -32,6 +32,7 @@ Nella pagina seguente, copiare _solo_ la parte dell'hostname, come in figura.
 Tornare su Nodered, aggiungere il nodo "mongodb out", quindi cliccarci sopra per configurarlo e cliccare sulla matita per configurare il server. Impostare come segue:
 
 - Host: incollare l'hostname copiato
+- Connection topology: selezionare "DNS Cluster (mongodb+srv://)"
 - Database: "stazione"
 - Username: il vostro username
 - Password: la vostra password
