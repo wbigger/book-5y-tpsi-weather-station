@@ -41,7 +41,8 @@ Tornare su Nodered, aggiungere il nodo "mongodb out", quindi cliccarci sopra per
 
 Tornati nella pagina precedente, impostate:
 
-- Operation: insert
+- Collection: "sensori"
+- Operation: "insert"
 - Impostare la flag "Only store msg.payload object"
 
 ![screenshot-12](./img/screenshot-13.png)
