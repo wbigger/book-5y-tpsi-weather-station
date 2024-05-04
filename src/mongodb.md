@@ -34,8 +34,8 @@ Tornare su Nodered, aggiungere il nodo "mongodb out", quindi cliccarci sopra per
 - Host: incollare l'hostname copiato
 - Connection topology: selezionare "DNS Cluster (mongodb+srv://)"
 - Database: "stazione"
-- Username: il vostro username
-- Password: la vostra password
+- Username: il vostro username (nomecognome)
+- Password: la vostra password (Scuola100)
 - Name: opzionalmente potete mettere un nome al server
 
 ![screenshot-13](./img/screenshot-13.png)

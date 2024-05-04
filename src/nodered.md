@@ -20,6 +20,7 @@ sudo npm install -g --unsafe-perm node-red
 Installare anche i nodi che ci serviranno per MongoDB:
 
 ```sh
+mkdir -p ~/.node-red/
 cd ~/.node-red/
 npm install node-red-node-mongodb
 ```
