@@ -17,7 +17,9 @@ sudo apt-get install -y nodejs build-essential
 sudo npm install -g --unsafe-perm node-red
 ```
 
-Installare anche i nodi che ci serviranno per MongoDB:
+Ricaricare la pagina per fare in modo che le modifiche abbiano effetto.
+
+Ora bisogna installare anche i nodi che ci serviranno per MongoDB:
 
 ```sh
 mkdir -p ~/.node-red/
@@ -32,6 +34,19 @@ node-red
 ```
 
 Adesso è possibile accedere alla propria istanza con andando su `http://<your-instance-ip>:1880/`.
+
+## Opzionale: avvio automatico
+
+Per fare in modo che Node-RED vada in esecuzione automaticamente all'avvio della macchina virtuale, eseguire i seguenti comandi:
+
+```sh
+sudo npm install -g --unsafe-perm pm2
+pm2 start `which node-red` -- -v
+pm2 save
+pm2 startup
+```
+
+**Attenzione**: l'ultimo comando, alla fine vi chiederà di eseguire un ulteriore comando - **assicuratevi di eseguirlo come richiesto**
 
 ## Flow MQTT
 
