@@ -1,5 +1,11 @@
 # Wokwi
 
+Per la simulazione della scheda, useremo Wokwi, che permette una simulazione molto fedele, è semplice da usare e la parte gratuita permette di fare tutto quello che ci serve.
+
+Come detto nello scenario, useremo una [ESP32](https://docs.wokwi.com/guides/esp32); per semplicità la qualità dell'aria viene monitorata con il solo sensore di temperatura ed umidità [DHT22](https://docs.wokwi.com/parts/wokwi-dht22).
+
+L'ESP32 è un ottima scelta per IoT perché permette, in un progetto reale, di criptare facilmente i dati e risparmiare energia con la funzionalità deep sleep.
+
 Creiamo una stazione di monitoraggio ambientale virtuale con Wokwi ed MQTT:
 
 - accedere a [wokwi.com](https://wokwi.com)
@@ -9,11 +15,17 @@ Creiamo una stazione di monitoraggio ambientale virtuale con Wokwi ed MQTT:
 - opzionale: cambiare `SENSOR_LOCATION` scegliendo tra "Atrio", "Parcheggio" e "Giardino" 
 - premere il tasto Play e la nostra stazione è pronta!
 
+Note sul progetto:
+
+- il protocollo NTP permette di leggere l'ora UTC reale, opzionalmente si potrà in futuro aggiungere anche il fuso orario
+- il messaggio varierà sempre perché cambia il timestamp, il controllo per l'aggiornamento serve principalmente per evitare di mandare più volte per errore lo stesso messaggio
+- per debug ora l'intervallo di invio è 10 secondi, nel progetto reale si può fare un intervallo molto più ampio (es. 2 ore) e usare la funzionalità deep sleep per ridurre il consumo energetico in questo intervallo
+
 Per testare che sta andando tutto bene, andare su [https://www.hivemq.com/demos/websocket-client/](https://www.hivemq.com/demos/websocket-client/), lasciare le impostazioni di default e premere "Connect". Sottoscriversi allo stesso topic del simulatore, quindi provare a cambiare i valori ambientali su wokwi cliccando sul sensore e variando i dati di temperatura ed umidità, dovreste vedere arrivare i messaggi sul vostro client web.
 
 ## Riferimento codice
 
-Metto qui sotto lo stesso codice usato nel progetto copiato sopra, come riferimento. La scheda usata è un [ESP32](https://docs.wokwi.com/guides/esp32) ed il sensore è un [DHT22](https://docs.wokwi.com/parts/wokwi-dht22).
+Metto qui sotto lo stesso codice usato nel progetto copiato sopra, come riferimento.
 
 ```python
 """
@@ -44,7 +56,7 @@ import ujson
 from umqtt.simple import MQTTClient
 
 # MQTT Server Parameters
-MQTT_CLIENT_ID = "micropython-weather-CAMBIARE"
+MQTT_CLIENT_ID = "micropython-weather-capobianco-ac516af1"
 MQTT_BROKER    = "broker.mqttdashboard.com"
 MQTT_USER      = ""
 MQTT_PASSWORD  = ""
@@ -76,25 +88,22 @@ prev_weather = ""
 while True:
   print("Measuring weather conditions... ", end="")
   sensor.measure() 
-  sensorData = {
-      "location" : SENSOR_LOCATION,
-      "temp": sensor.temperature(),
-      "humidity": sensor.humidity(),
-  }
+  anno, mese, giorno, ora, minuti, secondi, giorno_settimana, anno_settimana = time.localtime()
+  message = ujson.dumps({
+    "location" : SENSOR_LOCATION,
+    "temp": sensor.temperature(),
+    "humidity": sensor.humidity(),
+    "timestamp": f"{anno}-{mese:02d}-{giorno:02d}T{ora:02d}:{minuti:02d}:{secondi:02d}"
+  })
 
-  if sensorData != prev_weather:
+  if message != prev_weather:
     print("Updated!")
-    prev_weather = sensorData.copy()
-    # Add timestamp to data before send
-    anno, mese, giorno, ora, minuti, secondi, giorno_settimana, anno_settimana = time.localtime()
-    sensorData["timestamp"] = f"{anno}-{mese:02d}-{giorno:02d}T{ora:02d}:{minuti:02d}:{secondi:02d}"
-    message = ujson.dumps(sensorData)
     print("Reporting to MQTT topic {}: {}".format(MQTT_TOPIC, message))
     client.publish(MQTT_TOPIC, message)
+    prev_weather = message
   else:
     print("No change")
-  time.sleep(1)
-
+  time.sleep(10)
 ```
 
 Sempre per riferimento, inserisco anche il `diagram.json`.
